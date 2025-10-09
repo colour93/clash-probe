@@ -1,0 +1,47 @@
+# 探针配置文件示例
+
+# 拨测间隔（秒）
+interval: 60
+
+# HTTP 代理配置（可选）
+proxy:
+  enabled: true
+  host: "127.0.0.1"
+  port: 7890
+  # 代理协议: http 或 https
+  protocol: "http"
+
+# Clash API 配置（可选，用于获取当前节点信息）
+clash:
+  enabled: true
+  apiUrl: "http://127.0.0.1:9090"
+  # Clash API Secret（如果配置了 external-controller 的 secret）
+  secret: "your-secret-here"
+
+# 需要拨测的站点列表
+sites:
+  - name: "Google"
+    url: "https://www.google.com"
+    timeout: 10000  # 超时时间（毫秒）
+    expectedStatus: 200  # 期望的 HTTP 状态码
+  - name: "YouTube"
+    url: "https://www.youtube.com"
+    timeout: 10000
+    expectedStatus: 200
+  - name: "Twitter"
+    url: "https://www.twitter.com"
+    timeout: 10000
+    expectedStatus: 200
+
+# 飞书 Webhook 配置
+feishu:
+  enabled: true
+  webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx"
+  # 连续失败次数达到此阈值时才发送通知（避免频繁通知）
+  failureThreshold: 3
+  # 飞书卡片模板配置
+  templateId: "AAqx7P4LMEPDB"
+  templateVersion: "0.0.2"
+  # 来源标识（用于区分不同的探针实例）
+  origin: "主站集群"
+

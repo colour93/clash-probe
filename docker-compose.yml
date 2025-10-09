@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  clash-probe:
+    build: .
+    image: clash-probe:latest
+    container_name: clash-probe
+    restart: unless-stopped
+    volumes:
+      # 挂载配置文件
+      - ./config.yaml:/app/config/config.yaml:ro
+    environment:
+      - CONFIG_PATH=/app/config/config.yaml
+      - TZ=Asia/Shanghai
+    # 如果 clash 在宿主机上，可以使用 host 网络模式
+    # network_mode: host
+    # 或者使用默认网络模式，确保可以访问代理
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+
