@@ -37,7 +37,7 @@ export class ClashService {
       // 尝试从 GLOBAL 或其他选择器中获取当前代理
       const proxies = response.data.proxies;
 
-      const nameRegex = /国外流量|节点选择|proxy/gi
+      const nameRegex = /国外流量|节点选择|proxy|选择节点/gi
 
       // 优先尝试其他常见的选择器名称
       for (const name of Object.keys(proxies)) {
